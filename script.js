@@ -1569,3 +1569,41 @@ function phys_calculate() {
 document.addEventListener('DOMContentLoaded', function() {
     init();
 });
+
+// وظيفة المساعد الذكي للربط مع بايثون
+async function askAI() {
+    const input = document.getElementById('user-question');
+    const output = document.getElementById('chat-output');
+    const question = input.value;
+
+    // إذا كانت الخانة فارغة لا تفعل شيئاً
+    if (!question) return;
+
+    // 1. عرض سؤالك في شاشة المحادثة
+    output.innerHTML += `<div style="margin-top: 10px; color: #ffa500; font-weight: bold; text-align: right;">أنت: ${question}</div>`;
+    input.value = ""; // مسح الخانة للكتابة مرة أخرى
+    output.scrollTop = output.scrollHeight;
+
+    try {
+        // 2. إرسال السؤال إلى خادم بايثون (app.py)
+        const response = await fetch('http://localhost:5000/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: question })
+        });
+        
+        const data = await response.json();
+        
+        // 3. عرض إجابة الـ AI المستخرجة من الكتب
+        output.innerHTML += `<div style="margin-top: 10px; background: #252d3a; padding: 12px; border-radius: 8px; text-align: right; color: white;">
+            <b style="color: #ffa500;">المساعد الهندسي:</b><br>${data.answer}
+        </div>`;
+        
+        // النزول تلقائياً لآخر الرسائل
+        output.scrollTop = output.scrollHeight;
+
+    } catch (error) {
+        // في حال عدم تشغيل app.py
+        output.innerHTML += `<p style="color: red; font-size: 12px; text-align: center;">خطأ: تأكد من تشغيل خادم بايثون (app.py) في الـ Terminal</p>`;
+    }
+}

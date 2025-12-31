@@ -23,7 +23,7 @@
             <div class="nav-section">
                 <div class="nav-title" data-i18n="sec_general">عام</div>
                 <button class="nav-btn active" onclick="nav('home')"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">الرئيسية</span></button>
-                <button class="nav-btn" onclick="nav('ai')"><i class="fa-solid fa-robot"></i> <span data-i18n="nav_ai">الذكاء الاصطناعي</span></button>
+                <button class="nav-btn" onclick="nav('ai')"><i class="fa-solid fa-robot"></i> <span data-i18n="nav_>الذكاء الاصطناعي</span></button>
                 <button class="nav-btn" onclick="nav('units')"><i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="nav_units">محول الوحدات</span></button>
             </div>
 
@@ -172,14 +172,20 @@
                 </div>
             </div>
 
-            <div id="ai" class="page">
-                <div class="card" style="text-align:center; padding:80px 20px;">
-                    <i class="fa-solid fa-robot" style="font-size:5rem; color:var(--text-muted); margin-bottom:20px;"></i>
-                    <h2 data-i18n="ai_title">المساعد الذكي</h2>
-                    <p data-i18n="ai_desc" style="color:var(--text-muted);">تحليل البيانات الهندسية بالذكاء الاصطناعي</p>
-                    <div style="margin-top:30px; display:inline-block; padding:8px 20px; background:var(--warning); color:black; border-radius:20px; font-weight:bold; font-size:0.9rem;" data-i18n="soon">قريباً - Coming Soon</div>
-                </div>
-            </div>
+            <div class="ai-box" style="background: #1e2530; padding: 25px; border-radius: 15px; border: 1px solid #ffa500; text-align: center;">
+    <i class="fas fa-robot" style="font-size: 40px; color: #ffa500; margin-bottom: 15px;"></i>
+    <h3 style="color: white; margin-bottom: 10px;">مساعد SHB الهندسية الذكي</h3>
+    
+    <div id="chat-output" style="height: 200px; overflow-y: auto; background: #0d1117; padding: 15px; border-radius: 10px; margin-bottom: 15px; text-align: right; direction: rtl; border: 1px solid #333; color: white; font-size: 14px;">
+        <p style="color: #888;">أهلاً بك! اسألني عن الـ GPS أو الحسابات الهندسية من كتب د. جمعة داود.</p>
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+        <input type="text" id="user-question" placeholder="اكتب سؤالك هنا..." 
+               style="flex: 1; padding: 10px; border-radius: 8px; border: none; background: #2c3440; color: white; outline: none;">
+        <button onclick="askAI()" style="background: #ffa500; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">إرسال</button>
+    </div>
+</div>
 
             <!-- قسم المساحة بالإحداثيات -->
             <div id="area-coord" class="page">
